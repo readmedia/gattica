@@ -5,7 +5,7 @@ require 'rake/task'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "gattica"
+    gemspec.name = "readmedia-gattica"
     gemspec.version = "0.6.2.1"
     gemspec.summary = "Gattica is a easy to use Ruby Gem for getting data from the Google Analytics API."
     gemspec.email = "Philip@readMedia.com"
