@@ -164,7 +164,7 @@ module Gattica
       if response.code != '200'
         case response.code
         when '400'
-          raise GatticaError::AnalyticsError, response.body + " (status code: #{response.code})"
+          raise GatticaError::AnalyticsError, response.body + " (status code: #{response.code})\n#{query_string}"
         when '401'
           raise GatticaError::InvalidToken, "Your authorization token is invalid or has expired (status code: #{response.code})"
         else  # some other unknown error
@@ -248,14 +248,14 @@ module Gattica
       end
 
       # make sure that the user is only trying to filter fields that are in dimensions or metrics
-      if args[:filters]
-        missing = args[:filters].find_all do |arg|
-          !possible.include? arg.match(/^\w*/).to_s    # get the name of the filter and compare
-        end
-        unless missing.empty?
-          raise GatticaError::InvalidSort, "You are trying to filter by fields that are not in the available dimensions or metrics: #{missing.join(', ')}"
-        end
-      end
+      # if args[:filters]
+        # missing = args[:filters].find_all do |arg|
+          # !possible.include? arg.match(/^\w*/).to_s    # get the name of the filter and compare
+        # end
+        # unless missing.empty?
+          # raise GatticaError::InvalidSort, "You are trying to filter by fields that are not in the available dimensions or metrics: #{missing.join(', ')}"
+        # end
+      # end
 
       return args
     end
